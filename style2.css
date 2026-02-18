@@ -76,6 +76,13 @@ header > img{
     padding-left:6px;
     padding-right:10px;
 }
+
+.titulopagina{
+    font-family: Nexa;
+    color: var(--cor4);
+    display: flex;
+    justify-content: center;
+}
 main{
     width: 100%;
     margin: auto;
