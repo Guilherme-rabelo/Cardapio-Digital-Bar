@@ -1,5 +1,4 @@
-<html lang="pt-br">
-    <head>
+<html lang="pt-br"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardapio Chalezinho`s Bar</title>
@@ -10,24 +9,44 @@
    <header> 
    <!-- imagem caricatura ! -->
     <div class="slider">
-        <img src="imagens/caricaturacort.jpeg" class="active" >
-        <img src="imagens/caricatura2.jpeg" >
-        <img src="imagens/caricatura3.jpeg" >
+        <img src="imagens/caricaturacort.jpeg" class="active">
+        <img src="imagens/caricatura2.jpeg" class="">
+        <img src="imagens/caricatura3.jpeg" class="">
+
+    <div class="dots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
     </div>
     
 </header>
 
 <script>
   const images = document.querySelectorAll(".slider img");
+  const dots = document.querySelectorAll(".dot");
   let current = 0;
 
-  function changeImage() {
+  function showSlide(index){
     images[current].classList.remove("active");
-    current = (current + 1) % images.length;
+    dots[current].classList.remove("active");
+
+    current = index;
+
     images[current].classList.add("active");
+    dots[current].classList.add("active");
   }
 
-  setInterval(changeImage, 2500); // troca a cada 3 segundos
+  function changeImage(){
+    let next = (current + 1) % images.length;
+    showSlide(next);
+  }
+
+  function goToSlide(index){
+    showSlide(index);
+  }
+
+  setInterval(changeImage, 2000); // agora 2 segundos
 </script>
 <a href="https://wa.me/5537991160742" class="whatsapp-fixo" target="_blank">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60">
@@ -43,8 +62,8 @@
 
 <aside class="cardapiohistoria">
     <a href="#" id="Cardapio">Cardapio</a>
-    <a href="index2.html" id="Historia">Espaço</a>
-    <a href="index2.html" id="Historia">Reserva</a>
+    <a href="index2.html" id="espaço">Espaço</a>
+    <a href="index3.html" id="reserva">Reserva</a>
 </aside>
 
 <h1 class="titulopagina">CARDÁPIO</h1>
@@ -470,7 +489,7 @@
                     <p>R$6,00</p>
                 </div>
         </div>
-    </div>   
+    </main></div>   
     <hr>
  <!--FIM DOSE-->
 <!--inicio DOCES-->
@@ -512,9 +531,9 @@
                 </div>
         </div>
         <!--FIM DOCES-->
-    </main>
+    
  
  <!--FIM MENU-->
 
-</body>
-</html>
+
+</body></html>

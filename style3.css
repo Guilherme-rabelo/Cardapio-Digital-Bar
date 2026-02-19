@@ -8,6 +8,7 @@
     font-family: Nexa;
     src: url(fontes/Nexa-Heavy.ttf);
 }
+
 :root{
     --cor0: #f1f2c5;
     --cor1: #bec7ae;
@@ -16,33 +17,11 @@
     --cor5: #213435;
  
 }
+
 body{
     background-color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
-}
-
-Header{
-    height: 500px;
-    width: 400px;
-    background-color:white;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-}
-
-header > img{
-    width: 375px;
-    height: 370px;
-    display: flex;
-    align-items: center;
-}
-
-.whatsapp-fixo {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 10000;
 }
 
 .slider {
@@ -88,14 +67,41 @@ header > img{
   opacity: 1;
   background-color: white;
 }
+
+header{
+    height: 500px;
+    width: 400px;
+    overflow: hidden;
+    position: relative;
+    background-color:white;
+    margin: 0 auto;
+}
+
+header > img{
+    width: 375px;
+    height: 370px;
+    display: flex;
+    justify-content: center;
+}
+.whatsapp-fixo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+}
 .info{
     text-align: center;
     align-items: center;
-    font-family: Nexa;
+    font-family: Nexa , Helvetica, sans-serif;
     height: 250px;
     background-color:white;
     color: var(--cor4);
+    padding: 0;
 }
+.info > h1{
+    padding: 0;
+}
+
 .cardapiohistoria{
     font-family: normal;
     background-color: var(--cor2);
@@ -103,6 +109,8 @@ header > img{
     display: flex;                /* ativa flexbox */
     justify-content: space-evenly; 
     align-items: center; 
+    overflow-x: auto;
+
 }
 
 .cardapiohistoria > a{
@@ -121,13 +129,6 @@ header > img{
 }
 
 #espaço{
-    color: var(--cor2);
-    background-color:var(--cor0);
-    border-radius:10px;
-    padding-left:6px;
-    padding-right:10px;
-}
-#reserva{
     color: var(--cor0);
     background-color:var(--cor2);
     border-radius:10px;
@@ -135,16 +136,39 @@ header > img{
     padding-right:10px;
 }
 
-.titulopagina{
+#reserva{
+    color: var(--cor2);
+    background-color:var(--cor0);
+    border-radius:10px;
+    padding-left:6px;
+    padding-right:10px;
+}
+
+.titulopagina {
+    font-size: 40px;
     font-family: Nexa;
     color: var(--cor4);
-    display: flex;
-    justify-content: center;
+    margin-bottom: 20px;
 }
+
 main{
     width: 100%;
-    margin: auto;
+    margin: 0 auto;
     padding-top: 0px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+main > p {
+    padding-top: 30px;
+    font-family: Nexa;
+    font-size: 18px;
+    color: var(--cor5);
+    max-width: 600px;  /* limite máximo */
+    width: 90%;        /* adapta ao celular */
+    margin: 0 auto;
+    text-align: justify;
 }
 
 .galeria {
@@ -167,4 +191,41 @@ main{
 
 .galeria img:hover {
   transform: scale(1.10); /* Zoom suave ao passar o mouse */
+}
+ul{
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    list-style-type: disc; /* bolinha padrão */
+    padding-left: 20px; /* espaço para a bolinha aparecer */
+    width: fit-content;
+    margin: 0 auto;
+    font-family: Nexa;
+    color: var(--cor2);
+    font-size: 20px;
+
+}
+
+h1{
+    color: var(--cor5);
+    padding-top: 70px;
+    padding-bottom: 15px;
+}
+h2{
+    color: var(--cor4);
+    padding: 6px;
+}
+
+footer{
+    background-color: var(--cor4);
+    padding-top: 10px;
+    text-align: justify;
+    text-align: center;
+    max-height: 10px;
+}
+
+footer > h1{
+    background-color: var(--cor4);
+    color: var(--cor0);
+    
 }
