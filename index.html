@@ -9,9 +9,29 @@
 <body>
    <header> 
    <!-- imagem caricatura ! -->
-    <img src="imagens/caricaturacort.jpeg" alt="caricatura">
+    <div class="slider">
+        <img src="imagens/caricaturacort.jpeg" class="active" >
+        <img src="imagens/caricatura2.jpeg" >
+        <img src="imagens/caricatura3.jpeg" >
+    </div>
+    
 </header>
 
+<script>
+  const images = document.querySelectorAll(".slider img");
+  let current = 0;
+
+  function changeImage() {
+    images[current].classList.remove("active");
+    current = (current + 1) % images.length;
+    images[current].classList.add("active");
+  }
+
+  setInterval(changeImage, 2500); // troca a cada 3 segundos
+</script>
+<a href="https://wa.me/5537991160742" class="whatsapp-fixo" target="_blank">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60">
+</a>
 <aside class="info">
     <h1>horário de Funcionamento</h1>
     <p>Sab - 09:00hrs a 19:00hrs</p>

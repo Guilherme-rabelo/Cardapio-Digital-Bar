@@ -9,12 +9,12 @@
     src: url(fontes/Nexa-Heavy.ttf);
 }
 :root{
-    --cor0: #d0fdd7;
-    --cor1: #9bfab0;
-    --cor2: #64c27b;
-    --cor4: #1f703a;
-    --cor5: #104e25;
-
+    --cor0: #f1f2c5;
+    --cor1: #bec7ae;
+    --cor2: #648a64;
+    --cor4: #46685b;
+    --cor5: #213435;
+ 
 }
 
 body{
@@ -23,19 +23,45 @@ body{
     margin: 0px;
 }
 
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slider img.active {
+  opacity: 1;
+}
+
 Header{
-    height: 370px;
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
+    position: relative;
     background-color:white;
     margin: 0;
-    display: flex;
-    justify-content: center;
 }
 
 header > img{
     width: 375px;
     height: 370px;
     display: flex;
-    align-items: center;
+    justify-content: center;
+}
+.whatsapp-fixo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
 }
 .info{
     text-align: center;
