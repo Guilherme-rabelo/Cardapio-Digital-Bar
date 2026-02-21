@@ -21,33 +21,6 @@
     </div>
     
 </header>
-
-<script>
-  const images = document.querySelectorAll(".slider img");
-  const dots = document.querySelectorAll(".dot");
-  let current = 0;
-
-  function showSlide(index){
-    images[current].classList.remove("active");
-    dots[current].classList.remove("active");
-
-    current = index;
-
-    images[current].classList.add("active");
-    dots[current].classList.add("active");
-  }
-
-  function changeImage(){
-    let next = (current + 1) % images.length;
-    showSlide(next);
-  }
-
-  function goToSlide(index){
-    showSlide(index);
-  }
-
-  setInterval(changeImage, 2000); // agora 2 segundos
-</script>
 <a href="https://wa.me/5537991160742" class="whatsapp-fixo" target="_blank">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60">
 </a>
@@ -62,17 +35,119 @@
 
 <aside class="cardapiohistoria">
     <a href="index.html" id="Cardapio">Cardapio</a>
-    <a href="index2.html" id="espaço">Espaço</a>
+    <a href="index2.html" id="espaço">Estabelecimento</a>
     <a href="index3.html" id="reserva">Reserva</a>
 </aside>
 
 <main>
-    <h1 class="titulopagina">NOSSO ESPAÇO</h1>
-<div class="galeria">
-  <img src="imagens/reserva1.jpeg" alt="Foto 1" tabindex="0">
-  <img src="imagens/reserva2.jpeg" alt="Foto 2" tabindex="0">
-  <img src="imagens/reserva3.jpeg" alt="Foto 3" tabindex="0">
-  <img src="imagens/reserva4.jpeg" alt="Foto 4" tabindex="0">
+    <h1 class="titulopagina">NOSSA HISTORIA</h1>
+    <img src="imagens/chale.jpeg" class="imghistoria">
+    <h1>Nossa Historia</h1>
+    <h2>Tradição sabor e momentos inesqueciveis desde o primeiro brinde.</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque deserunt reprehenderit nostrum a eaque laudantium. Fugit corrupti temporibus earum odit aliquid voluptate, nemo nostrum repudiandae doloremque eos, modi reprehenderit odio!</p>
+    <H1>NOSSO ESTABELECIMENTO</H1>
+    <P>Nosso estabelecimento foi preparado para oferecer conforto, descontração e nostalgia. <br> Ambiente agrádavel, perfeito para reunir amigos, comemorar datas especiais ou simplesmente relazar no final de semana !</P>
+
+
+<div class="carrossel">
+    <button class="seta esquerda">&#10094;</button>
+
+    <div class="container">
+        <img src="imagens/bar1.jpeg" alt="">
+        <img src="imagens/bar2.jpeg" alt="">
+        <img src="imagens/bar3.jpeg" alt="">
+        <img src="imagens/bar4.jpeg" alt="">
+        <img src="imagens/bar5.jpeg" alt="">
+        <img src="imagens/bar6.jpeg" alt="">
+        <img src="imagens/bar7.jpeg" alt="">
+        <img src="imagens/bar8.jpeg" alt="">
+    </div>
+
+    <button class="seta direita">&#10095;</button>
 </div>
 
 </main>
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const container = document.querySelector('.container');
+    const imagens = document.querySelectorAll('.container img');
+    const btnEsquerda = document.querySelector('.esquerda');
+    const btnDireita = document.querySelector('.direita');
+
+    let index = 0;
+    let startX = 0;
+    let currentTranslate = 0;
+    let isDragging = false;
+
+    function atualizarCarrossel() {
+        const largura = container.clientWidth;
+        currentTranslate = -index * largura;
+        container.style.transition = "transform 0.4s ease-in-out";
+        container.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    // 🔁 BOTÃO DIREITA
+    btnDireita.addEventListener('click', () => {
+        index++;
+        if (index >= imagens.length) {
+            index = 0;
+        }
+        atualizarCarrossel();
+    });
+
+    // 🔁 BOTÃO ESQUERDA
+    btnEsquerda.addEventListener('click', () => {
+        index--;
+        if (index < 0) {
+            index = imagens.length - 1;
+        }
+        atualizarCarrossel();
+    });
+
+    // 📱 TOUCH START
+    container.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        container.style.transition = "none";
+    });
+
+    // 📱 TOUCH MOVE
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+
+        const currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+
+        container.style.transform = `translateX(${currentTranslate + diff}px)`;
+    });
+
+    // 📱 TOUCH END
+    container.addEventListener('touchend', (e) => {
+        isDragging = false;
+
+        const endX = e.changedTouches[0].clientX;
+        const diff = endX - startX;
+
+        if (diff > 50) {
+            index--;
+        } else if (diff < -50) {
+            index++;
+        }
+
+        if (index < 0) {
+            index = imagens.length - 1;
+        }
+
+        if (index >= imagens.length) {
+            index = 0;
+        }
+
+        atualizarCarrossel();
+    });
+
+});
+
+</script>
+</body>

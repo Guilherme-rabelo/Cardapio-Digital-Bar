@@ -105,7 +105,7 @@ header > img{
 .cardapiohistoria{
     font-family: normal;
     background-color: var(--cor2);
-    height: 40px;
+    height: 45px;
     display: flex;                /* ativa flexbox */
     justify-content: space-evenly; 
     align-items: center; 
