@@ -212,9 +212,10 @@ nav > a{
 
 hr{
     height:4px;
-    margin-top:50px;
     background-color: var(--cor5);
     width:100%;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 footer{
