@@ -92,7 +92,7 @@ header > img{
 .info{
     text-align: center;
     align-items: center;
-    font-family: Nexa , Helvetica, sans-serif;
+    font-family: Nexa, Helvetica, sans-serif;
     height: 250px;
     background-color:white;
     color: var(--cor4);
@@ -183,12 +183,17 @@ nav > a{
 }
 
 #produtos{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    padding-bottom:10px;
+    display:flex;
+    align-items:center;
+    padding: 10px;
+    border: 1px solid rgb(224, 223, 223);
+    box-shadow: 0 0 10px 5px #bebebe66;
+}
+.Descrição{
     padding-left:10px;
+}
+.Valor{
+    margin-left: auto;
 }
 
 .imagemitem > img{
@@ -218,6 +223,7 @@ hr{
     margin-bottom: 40px;
 }
 
+
 footer{
     height: 80px;
     background-color: var(--cor4);
@@ -227,4 +233,5 @@ footer{
     align-content: center;
     align-items: center;
     text-align: center;
+    padding-top: 10px;
 }

@@ -150,12 +150,11 @@ main{
     text-align: center;
 }
 
-main > p{
-  text-align: justify;
-}
+
 .imghistoria{
-  height: 300px;
-  width: 300px;
+  height: 350px;
+  width: 390px;
+  border-radius: 20px;
 }
 
 .carrossel {
@@ -164,6 +163,7 @@ main > p{
     max-width: 300px;
     margin: auto;
     overflow: hidden;
+    border-radius: 30px;
 }
 
 .container {
