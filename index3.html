@@ -24,32 +24,6 @@
     
 </header>
 
-<script>
-  const images = document.querySelectorAll(".slider img");
-  const dots = document.querySelectorAll(".dot");
-  let current = 0;
-
-  function showSlide(index){
-    images[current].classList.remove("active");
-    dots[current].classList.remove("active");
-
-    current = index;
-
-    images[current].classList.add("active");
-    dots[current].classList.add("active");
-  }
-
-  function changeImage(){
-    let next = (current + 1) % images.length;
-    showSlide(next);
-  }
-
-  function goToSlide(index){
-    showSlide(index);
-  }
-
-  setInterval(changeImage, 2000); // agora 2 segundos
-</script>
 <a href="https://wa.me/5537991160742" class="whatsapp-fixo" target="_blank">
   <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" width="60">
 </a>
@@ -76,51 +50,168 @@
 Aqui você encontra porções incriveis, bebidas sempre geladas e a atmosfera ideal para curtir sem preocupação. Seja para uma comemoração íntima ou para reunir todo mundo, estamos prontos para receber você da melhor forma.</p>
 <h1>Por que reserva ?</h1>
 <ul>
-  <li>Espaço ideal para aniversários</li>
-  <li>Espaço grande e espaçoso</li>
-  <li>Ambiente confortável e divertido</li>
-  <li>Lugar com Cozinha</li>
-  <li>Lugar com banheiros limpos e higienizados</li>
+  <li> &#x1F389; Espaço ideal para aniversários</li>
+  <li> &#x1FA91; Espaço grande e espaçoso</li>
+  <li> &#x1F388; Ambiente confortável e divertido</li>
+  <li> &#128105;&#8205;&#127859; Lugar com Cozinha</li>
+  <li>  &#x1F6BD; Lugar com banheiros limpos e higienizados</li>
 </ul>
 
 
 <h1>Conheça nosso Espaço !</h1>
 <h1>Salão</h1>
 <h2>Salão grande e espaçoso, com muitas mesas e espaço para dançar e s divertir !</h2>
-<div class="galeria">
-  <img src="imagens/reserva1.jpeg" alt="Foto 1" tabindex="0">
-  <img src="imagens/reserva2.jpeg" alt="Foto 2" tabindex="0">
-  <img src="imagens/reserva3.jpeg" alt="Foto 3" tabindex="0">
-  <img src="imagens/reserva4.jpeg" alt="Foto 4" tabindex="0">
-</div>
 
+<div class="carrossel">
+    <button class="seta esquerda">&#10094;</button>
+
+    <div class="container">
+        <img src="imagens/reserva1.jpeg" alt="">
+        <img src="imagens/reserva2.jpeg" alt="">
+        <img src="imagens/reserva3.jpeg" alt="">
+        <img src="imagens/reserva4.jpeg" alt="">
+        <img src="imagens/reserva5.jpeg" alt="">
+    </div>
+
+    <button class="seta direita">&#10095;</button>
+</div>
 <h1>Banheiros</h1>
 <h2>Banheiros grandes, limpos, e separados po genero !</h2>
 <div class="galeria">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 1" tabindex="0">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 2" tabindex="0">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 3" tabindex="0">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 4" tabindex="0">
+  <img src="imagens/banheiro1.jpeg" alt="Foto 1" tabindex="0">
+  <img src="imagens/banheiro1.jpeg" alt="Foto 2" tabindex="0">
 </div>
 
 <h1>Cozinha</h1>
 <h2>Cozinha completa, higienizada e espaçosa !</h2>
 <div class="galeria">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 1" tabindex="0">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 2" tabindex="0">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 3" tabindex="0">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 4" tabindex="0">
+  <img src="imagens/cozinha2.jpeg" alt="Foto 1" tabindex="0">
+  <img src="imagens/cozinha1.jpeg" alt="Foto 2" tabindex="0">
 </div>
 
-<h1>Brinquedos</h1>
+<h1>Aréa brinquedos</h1>
 <h2>Aréa pensada para crianças, para brincadeiras e diversão !</h2>
 <div class="galeria">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 1" tabindex="0">
-  <img src="imagens/Imagemprovipq.png" alt="Foto 2" tabindex="0">
+  <img src="imagens/area1.jpeg" alt="Foto 1" tabindex="0">
+  <img src="imagens/area2.jpeg" alt="Foto 2" tabindex="0">
 </div>
+
+<h1>Aréa churrasqueira</h1>
+<h2>Aréa com churrasqueira, forno e fogão a lenha !</h2>
+<div class="galeria">
+  <img src="imagens/churrasqueira.jpeg" alt="Foto 1" tabindex="0">
+</div>
+
 </main>
 
 <footer>
   <h1>RESERVE JÁ!!!</h1>
 </footer>
+<script>
+  const images = document.querySelectorAll(".slider img");
+  const dots = document.querySelectorAll(".dot");
+  let current = 0;
+
+  function showSlide(index){
+    images[current].classList.remove("active");
+    dots[current].classList.remove("active");
+
+    current = index;
+
+    images[current].classList.add("active");
+    dots[current].classList.add("active");
+  }
+
+  function changeImage(){
+    let next = (current + 1) % images.length;
+    showSlide(next);
+  }
+
+  function goToSlide(index){
+    showSlide(index);
+  }
+
+  setInterval(changeImage, 2000); // agora 2 segundos
+
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const container = document.querySelector('.container');
+    const imagens = document.querySelectorAll('.container img');
+    const btnEsquerda = document.querySelector('.esquerda');
+    const btnDireita = document.querySelector('.direita');
+
+    let index = 0;
+    let startX = 0;
+    let currentTranslate = 0;
+    let isDragging = false;
+
+    function atualizarCarrossel() {
+        const largura = container.clientWidth;
+        currentTranslate = -index * largura;
+        container.style.transition = "transform 0.4s ease-in-out";
+        container.style.transform = `translateX(${currentTranslate}px)`;
+    }
+
+    // 🔁 BOTÃO DIREITA
+    btnDireita.addEventListener('click', () => {
+        index++;
+        if (index >= imagens.length) {
+            index = 0;
+        }
+        atualizarCarrossel();
+    });
+
+    // 🔁 BOTÃO ESQUERDA
+    btnEsquerda.addEventListener('click', () => {
+        index--;
+        if (index < 0) {
+            index = imagens.length - 1;
+        }
+        atualizarCarrossel();
+    });
+
+    // 📱 TOUCH START
+    container.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+        container.style.transition = "none";
+    });
+
+    // 📱 TOUCH MOVE
+    container.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+
+        const currentX = e.touches[0].clientX;
+        const diff = currentX - startX;
+
+        container.style.transform = `translateX(${currentTranslate + diff}px)`;
+    });
+
+    // 📱 TOUCH END
+    container.addEventListener('touchend', (e) => {
+        isDragging = false;
+
+        const endX = e.changedTouches[0].clientX;
+        const diff = endX - startX;
+
+        if (diff > 50) {
+            index--;
+        } else if (diff < -50) {
+            index++;
+        }
+
+        if (index < 0) {
+            index = imagens.length - 1;
+        }
+
+        if (index >= imagens.length) {
+            index = 0;
+        }
+
+        atualizarCarrossel();
+    });
+
+});
+</script>
+</body>
 </html>

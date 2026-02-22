@@ -189,6 +189,20 @@ nav > a{
     border: 1px solid rgb(224, 223, 223);
     box-shadow: 0 0 10px 5px #bebebe66;
 }
+
+#produtomaispedido{
+    display:flex;
+    align-items:center;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 2px solid rgb(250, 118, 30);
+    box-shadow: 0 0 3px 5px #ec802866;
+    font-family: Nexa;
+    font-size: 20px;
+}
+
+
+
 .Descrição{
     padding-left:10px;
 }
@@ -211,8 +225,17 @@ nav > a{
  .MENU > main > h1{ 
      color: var(--cor5); 
      padding: 20px; 
-     padding-left:10px
+     padding-left:10px;
+    text-shadow: 2px 2px 4px #1d1c1c93;
  }
+
+ .MENU > main > strong > h2{ 
+     color: rgb(238, 78, 20); 
+     padding: 20px; 
+     padding-left:10px;
+     font-size: 28px;
+ }
+
 
 
 hr{

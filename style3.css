@@ -171,6 +171,52 @@ main > p {
     text-align: justify;
 }
 
+.carrossel {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 30px;
+}
+
+.container {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+    touch-action: pan-y;
+    height: 340px;
+    width: 340px;
+}
+
+.container img {
+    width: 100%;
+    flex-shrink: 0;
+    pointer-events: none;
+    user-select: none;
+    background-size: cover;
+}
+
+.seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 22px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.esquerda { left: 10px; }
+.direita { right: 10px; }
+
+.seta:hover {
+    background: rgba(0,0,0,0.8);
+}
+
 .galeria {
   display: flex;
   flex-wrap: wrap; /* Permite quebra de linha */
@@ -197,7 +243,7 @@ ul{
     align-items: center;
     text-align: justify;
     list-style-type: disc; /* bolinha padrão */
-    padding-left: 20px; /* espaço para a bolinha aparecer */
+    padding-left: 35px; /* espaço para a bolinha aparecer */
     width: fit-content;
     margin: 0 auto;
     font-family: Nexa;
