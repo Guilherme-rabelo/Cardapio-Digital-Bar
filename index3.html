@@ -101,6 +101,8 @@ Aqui você encontra porções incriveis, bebidas sempre geladas e a atmosfera id
 <div class="galeria">
   <img src="imagens/churrasqueira.jpeg" alt="Foto 1" tabindex="0">
 </div>
+<br>
+<br>
 
 </main>
 
@@ -108,108 +110,136 @@ Aqui você encontra porções incriveis, bebidas sempre geladas e a atmosfera id
   <h1>RESERVE JÁ!!!</h1>
 </footer>
 <script>
-  const images = document.querySelectorAll(".slider img");
-  const dots = document.querySelectorAll(".dot");
-  let current = 0;
+document.addEventListener("DOMContentLoaded", function () {
 
-  function showSlide(index){
-    images[current].classList.remove("active");
-    dots[current].classList.remove("active");
+ /* =========================
+   🔝 SLIDER DO TOPO
+==========================*/
 
-    current = index;
+const slider = document.querySelector(".slider");
+const sliderImages = document.querySelectorAll(".slider img");
+const dots = document.querySelectorAll(".dot");
 
-    images[current].classList.add("active");
-    dots[current].classList.add("active");
+if (sliderImages.length > 0) {
+
+  let currentSlide = 0;
+  let interval;
+  let isPaused = false;
+
+  function showSlide(index) {
+    sliderImages[currentSlide].classList.remove("active");
+    dots[currentSlide].classList.remove("active");
+
+    currentSlide = index;
+
+    sliderImages[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
   }
 
-  function changeImage(){
-    let next = (current + 1) % images.length;
-    showSlide(next);
+  function startAutoSlide() {
+    interval = setInterval(() => {
+      if (!isPaused) {
+        let next = (currentSlide + 1) % sliderImages.length;
+        showSlide(next);
+      }
+    }, 3000);
   }
 
-  function goToSlide(index){
+  function stopAutoSlide() {
+    isPaused = true;
+  }
+
+  function resumeAutoSlide() {
+    isPaused = false;
+  }
+
+  // inicia automático
+  startAutoSlide();
+
+  // 👉 PAUSA AO SEGURAR (TOUCH)
+  slider.addEventListener("touchstart", stopAutoSlide);
+  slider.addEventListener("touchend", resumeAutoSlide);
+
+  // 👉 PAUSA AO SEGURAR (MOUSE)
+  slider.addEventListener("mousedown", stopAutoSlide);
+  slider.addEventListener("mouseup", resumeAutoSlide);
+  slider.addEventListener("mouseleave", resumeAutoSlide);
+
+  // bolinhas
+  window.goToSlide = function(index){
     showSlide(index);
-  }
+  };
+}
+  /* =========================
+     📸 CARROSSEL COM SWIPE
+  ==========================*/
 
-  setInterval(changeImage, 2000); // agora 2 segundos
+  const carrossel = document.querySelector('.carrossel');
 
-  document.addEventListener("DOMContentLoaded", function () {
+  if (carrossel) {
 
-    const container = document.querySelector('.container');
-    const imagens = document.querySelectorAll('.container img');
-    const btnEsquerda = document.querySelector('.esquerda');
-    const btnDireita = document.querySelector('.direita');
+    const container = carrossel.querySelector('.container');
+    const imagens = container.querySelectorAll('img');
+    const btnEsquerda = carrossel.querySelector('.esquerda');
+    const btnDireita = carrossel.querySelector('.direita');
 
     let index = 0;
     let startX = 0;
+    let prevTranslate = 0;
     let currentTranslate = 0;
     let isDragging = false;
 
     function atualizarCarrossel() {
-        const largura = container.clientWidth;
-        currentTranslate = -index * largura;
-        container.style.transition = "transform 0.4s ease-in-out";
-        container.style.transform = `translateX(${currentTranslate}px)`;
+      const largura = carrossel.clientWidth;
+
+      currentTranslate = -index * largura;
+      prevTranslate = currentTranslate;
+
+      container.style.transition = "transform 0.4s ease-in-out";
+      container.style.transform = `translateX(${currentTranslate}px)`;
     }
 
-    // 🔁 BOTÃO DIREITA
-    btnDireita.addEventListener('click', () => {
-        index++;
-        if (index >= imagens.length) {
-            index = 0;
-        }
+    if (btnDireita) {
+      btnDireita.addEventListener('click', () => {
+        index = (index + 1) % imagens.length;
         atualizarCarrossel();
-    });
+      });
+    }
 
-    // 🔁 BOTÃO ESQUERDA
-    btnEsquerda.addEventListener('click', () => {
-        index--;
-        if (index < 0) {
-            index = imagens.length - 1;
-        }
+    if (btnEsquerda) {
+      btnEsquerda.addEventListener('click', () => {
+        index = (index - 1 + imagens.length) % imagens.length;
         atualizarCarrossel();
-    });
+      });
+    }
 
-    // 📱 TOUCH START
     container.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        container.style.transition = "none";
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      container.style.transition = "none";
     });
 
-    // 📱 TOUCH MOVE
     container.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-
-        const currentX = e.touches[0].clientX;
-        const diff = currentX - startX;
-
-        container.style.transform = `translateX(${currentTranslate + diff}px)`;
+      if (!isDragging) return;
+      const diff = e.touches[0].clientX - startX;
+      container.style.transform = `translateX(${prevTranslate + diff}px)`;
     });
 
-    // 📱 TOUCH END
     container.addEventListener('touchend', (e) => {
-        isDragging = false;
+      isDragging = false;
 
-        const endX = e.changedTouches[0].clientX;
-        const diff = endX - startX;
+      const diff = e.changedTouches[0].clientX - startX;
 
-        if (diff > 50) {
-            index--;
-        } else if (diff < -50) {
-            index++;
-        }
+      if (diff > 50) index--;
+      else if (diff < -50) index++;
 
-        if (index < 0) {
-            index = imagens.length - 1;
-        }
+      index = (index + imagens.length) % imagens.length;
 
-        if (index >= imagens.length) {
-            index = 0;
-        }
-
-        atualizarCarrossel();
+      atualizarCarrossel();
     });
+
+    window.addEventListener("resize", atualizarCarrossel);
+  }
 
 });
 </script>

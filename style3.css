@@ -191,7 +191,6 @@ main > p {
 .container img {
     width: 100%;
     flex-shrink: 0;
-    pointer-events: none;
     user-select: none;
     background-size: cover;
 }
@@ -262,16 +261,23 @@ h2{
     padding: 6px;
 }
 
+
+
 footer{
+    height: 80px;
     background-color: var(--cor4);
-    padding-top: 10px;
-    text-align: justify;
+    color: var(--cor0);
+    font-size:12px;
+    font-family: Nexa;
+    align-content: center;
+    align-items: center;
     text-align: center;
-    max-height: 10px;
+    padding-top: 10px;
 }
 
 footer > h1{
     background-color: var(--cor4);
     color: var(--cor0);
+    padding: 0;
     
 }

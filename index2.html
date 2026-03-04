@@ -45,7 +45,7 @@
     <h1 class="titulopagina">NOSSA HISTORIA</h1>
     <img src="imagens/imagembar1.jpeg" class="imghistoria">
     <h2>Tradição sabor e momentos inesqueciveis desde o primeiro brinde.</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque deserunt reprehenderit nostrum a eaque laudantium. Fugit corrupti temporibus earum odit aliquid voluptate, nemo nostrum repudiandae doloremque eos, modi reprehenderit odio!</p>
+    <p>Há lugares que vão muito além de paredes e balcões — são feitos de memórias, risadas e encontros que atravessam gerações. Este bar nasceu do sonho e da dedicação de um homem que acreditava no poder da boa conversa, da amizade sincera e de uma mesa sempre cheia. Entre copos erguidos e histórias compartilhadas, construiu-se aqui muito mais que um ponto de encontro: criou-se uma tradição. Cada detalhe carrega um pedaço dessa trajetória, mantendo viva a essência de um tempo em que tudo era feito com carinho, respeito e orgulho. 🍻</p>    
     <H1>NOSSO ESTABELECIMENTO</H1>
     <P>Nosso estabelecimento foi preparado para oferecer conforto, descontração e nostalgia. <br> Ambiente agrádavel, perfeito para reunir amigos, comemorar datas especiais ou simplesmente relazar no final de semana !</P>
 
@@ -71,111 +71,136 @@
 
 </main>
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
+ /* =========================
+   🔝 SLIDER DO TOPO
+==========================*/
 
-    const container = document.querySelector('.container');
-    const imagens = document.querySelectorAll('.container img');
-    const btnEsquerda = document.querySelector('.esquerda');
-    const btnDireita = document.querySelector('.direita');
+const slider = document.querySelector(".slider");
+const sliderImages = document.querySelectorAll(".slider img");
+const dots = document.querySelectorAll(".dot");
+
+if (sliderImages.length > 0) {
+
+  let currentSlide = 0;
+  let interval;
+  let isPaused = false;
+
+  function showSlide(index) {
+    sliderImages[currentSlide].classList.remove("active");
+    dots[currentSlide].classList.remove("active");
+
+    currentSlide = index;
+
+    sliderImages[currentSlide].classList.add("active");
+    dots[currentSlide].classList.add("active");
+  }
+
+  function startAutoSlide() {
+    interval = setInterval(() => {
+      if (!isPaused) {
+        let next = (currentSlide + 1) % sliderImages.length;
+        showSlide(next);
+      }
+    }, 3000);
+  }
+
+  function stopAutoSlide() {
+    isPaused = true;
+  }
+
+  function resumeAutoSlide() {
+    isPaused = false;
+  }
+
+  // inicia automático
+  startAutoSlide();
+
+  // 👉 PAUSA AO SEGURAR (TOUCH)
+  slider.addEventListener("touchstart", stopAutoSlide);
+  slider.addEventListener("touchend", resumeAutoSlide);
+
+  // 👉 PAUSA AO SEGURAR (MOUSE)
+  slider.addEventListener("mousedown", stopAutoSlide);
+  slider.addEventListener("mouseup", resumeAutoSlide);
+  slider.addEventListener("mouseleave", resumeAutoSlide);
+
+  // bolinhas
+  window.goToSlide = function(index){
+    showSlide(index);
+  };
+}
+  /* =========================
+     📸 CARROSSEL COM SWIPE
+  ==========================*/
+
+  const carrossel = document.querySelector('.carrossel');
+
+  if (carrossel) {
+
+    const container = carrossel.querySelector('.container');
+    const imagens = container.querySelectorAll('img');
+    const btnEsquerda = carrossel.querySelector('.esquerda');
+    const btnDireita = carrossel.querySelector('.direita');
 
     let index = 0;
     let startX = 0;
+    let prevTranslate = 0;
     let currentTranslate = 0;
     let isDragging = false;
 
     function atualizarCarrossel() {
-        const largura = container.clientWidth;
-        currentTranslate = -index * largura;
-        container.style.transition = "transform 0.4s ease-in-out";
-        container.style.transform = `translateX(${currentTranslate}px)`;
+      const largura = carrossel.clientWidth;
+
+      currentTranslate = -index * largura;
+      prevTranslate = currentTranslate;
+
+      container.style.transition = "transform 0.4s ease-in-out";
+      container.style.transform = `translateX(${currentTranslate}px)`;
     }
 
-    // 🔁 BOTÃO DIREITA
-    btnDireita.addEventListener('click', () => {
-        index++;
-        if (index >= imagens.length) {
-            index = 0;
-        }
+    if (btnDireita) {
+      btnDireita.addEventListener('click', () => {
+        index = (index + 1) % imagens.length;
         atualizarCarrossel();
-    });
+      });
+    }
 
-    // 🔁 BOTÃO ESQUERDA
-    btnEsquerda.addEventListener('click', () => {
-        index--;
-        if (index < 0) {
-            index = imagens.length - 1;
-        }
+    if (btnEsquerda) {
+      btnEsquerda.addEventListener('click', () => {
+        index = (index - 1 + imagens.length) % imagens.length;
         atualizarCarrossel();
-    });
+      });
+    }
 
-    // 📱 TOUCH START
     container.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
-        container.style.transition = "none";
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      container.style.transition = "none";
     });
 
-    // 📱 TOUCH MOVE
     container.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-
-        const currentX = e.touches[0].clientX;
-        const diff = currentX - startX;
-
-        container.style.transform = `translateX(${currentTranslate + diff}px)`;
+      if (!isDragging) return;
+      const diff = e.touches[0].clientX - startX;
+      container.style.transform = `translateX(${prevTranslate + diff}px)`;
     });
 
-    // 📱 TOUCH END
     container.addEventListener('touchend', (e) => {
-        isDragging = false;
+      isDragging = false;
 
-        const endX = e.changedTouches[0].clientX;
-        const diff = endX - startX;
+      const diff = e.changedTouches[0].clientX - startX;
 
-        if (diff > 50) {
-            index--;
-        } else if (diff < -50) {
-            index++;
-        }
+      if (diff > 50) index--;
+      else if (diff < -50) index++;
 
-        if (index < 0) {
-            index = imagens.length - 1;
-        }
+      index = (index + imagens.length) % imagens.length;
 
-        if (index >= imagens.length) {
-            index = 0;
-        }
-
-        atualizarCarrossel();
+      atualizarCarrossel();
     });
+
+    window.addEventListener("resize", atualizarCarrossel);
+  }
 
 });
-
-
-  const images = document.querySelectorAll(".slider img");
-  const dots = document.querySelectorAll(".dot");
-  let current = 0;
-
-  function showSlide(index){
-    images[current].classList.remove("active");
-    dots[current].classList.remove("active");
-
-    current = index;
-
-    images[current].classList.add("active");
-    dots[current].classList.add("active");
-  }
-
-  function changeImage(){
-    let next = (current + 1) % images.length;
-    showSlide(next);
-  }
-
-  function goToSlide(index){
-    showSlide(index);
-  }
-
-  setInterval(changeImage, 2000); // agora 2 segundos
 </script>
 </body>
