@@ -16,12 +16,23 @@
     --cor5: #213435;
  
 }
+
+
+html{
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+}
+
 body{
     background-color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
-
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    position: relative;
 }
+
+
 
 Header{
     height: 500px;
@@ -165,7 +176,7 @@ main{
     max-width: 340px;
     margin: auto;
     overflow: hidden;
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .container {
@@ -245,6 +256,26 @@ p{
 
 .galeria img:hover {
   transform: scale(1.10); /* Zoom suave ao passar o mouse */
+}
+
+footer{
+    height: 80px;
+    background-color: var(--cor4);
+    color: var(--cor0);
+    font-size:12px;
+    font-family: Nexa;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 25px;
+}
+
+footer > h1{
+    background-color: var(--cor4);
+    color: var(--cor0);
+    padding: 0;
+    
 }
 
 
