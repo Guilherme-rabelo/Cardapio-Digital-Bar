@@ -169,15 +169,19 @@ nav{
     height: 70px;
 
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 35px;
+
+    padding: 0 20px;
 
     overflow-x: auto;
+    overflow-y: hidden;
 
     position: sticky;
     top: 45px;
     z-index: 1000;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
 nav > a{
     color: var(--cor0);
@@ -185,6 +189,9 @@ nav > a{
     font-size: 20px;
     display: flex;
     padding: 10px;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    scroll-snap-align: start;
 }
 
 #produtos{
