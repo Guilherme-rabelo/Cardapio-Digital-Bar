@@ -113,12 +113,14 @@ header > img{
     font-family: normal;
     background-color: var(--cor2);
     height: 45px;
-    display: flex;                /* ativa flexbox */
-    justify-content: space-evenly; 
-    align-items: center; 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     overflow-x: auto;
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
 }
-
 .cardapiohistoria > a{
     font-family: Nexa;
     font-size: 25px;
