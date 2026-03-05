@@ -26,7 +26,6 @@ body{
     background-color: rgb(255, 255, 255);
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px;
-    overflow-x: hidden;
     overscroll-behavior-x: none;
     position: relative;
 }
@@ -108,11 +107,13 @@ header > img{
     font-family: normal;
     background-color: var(--cor2);
     height: 45px;
-    display: flex;                /* ativa flexbox */
-    justify-content: space-evenly; 
-    align-items: center; 
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     overflow-x: auto;
-
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
 }
 
 .cardapiohistoria > a{
@@ -153,34 +154,31 @@ header > img{
     display: flex;
     justify-content: center;
 }
+
 main{
     width: 100%;
     margin: auto;
     padding-top: 0px;
-    overflow-x: hidden;
 }
 nav{
-    text-align: center;
-    align-items: center;
     background-color: var(--cor4);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+
     width: 100%;
-    max-height: 300px;
-    overflow-x: auto;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
-
-    display: flex;                /* ativa flexbox */
-    justify-content: space-between; /* logo esquerda, menu direita */
-    align-items: center;          /* centraliza verticalmente */
-    gap: 50px;
-    
     height: 70px;
-}
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    overflow-x: auto;
+
+    position: sticky;
+    top: 45px;
+    z-index: 1000;
+}
 nav > a{
     color: var(--cor0);
     font-family: Nexa;
