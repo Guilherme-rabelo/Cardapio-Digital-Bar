@@ -42,11 +42,27 @@
 </aside>
 
 <main>
-    <h1 class="titulopagina">NOSSA HISTORIA</h1>
     <img src="imagens/imagembar1.jpeg" class="imghistoria">
     <h2>Tradição sabor e momentos inesqueciveis desde o primeiro brinde.</h2>
     <p>Há lugares que vão muito além de paredes e balcões — são feitos de memórias, risadas e encontros que atravessam gerações. Este bar nasceu do sonho e da dedicação de um homem que acreditava no poder da boa conversa, da amizade sincera e de uma mesa sempre cheia. Entre copos erguidos e histórias compartilhadas, construiu-se aqui muito mais que um ponto de encontro: criou-se uma tradição. Cada detalhe carrega um pedaço dessa trajetória, mantendo viva a essência de um tempo em que tudo era feito com carinho, respeito e orgulho. 🍻</p>    
-    <H1>NOSSO ESTABELECIMENTO</H1>
+
+    <h1 class="titulopagina">NOSSA HISTORIA</h1>
+    <p>Apaixonado por pesca e futebol as fotos guardam lembranças de um homem , com momentos simples e felizes que ajudaram a construir a história e o espírito do lugar com muita luta e amizades pelo caminho.</p>
+
+<div class="carrossel">
+    <button class="seta esquerda">&#10094;</button>
+
+    <div class="container">
+        <img src="imagens/historia1.jpeg" alt="">
+        <img src="imagens/historia2.jpeg" alt="">
+
+    </div>
+
+    <button class="seta direita">&#10095;</button>
+</div>
+
+
+      <h1 class="titulopagina">NOSSA ESTABELECIMENTO</h1>
     <P>Nosso estabelecimento foi preparado para oferecer conforto, descontração e nostalgia. <br> Ambiente agrádavel, perfeito para reunir amigos, comemorar datas especiais ou simplesmente relazar no final de semana !</P>
 
 
@@ -67,6 +83,23 @@
     <button class="seta direita">&#10095;</button>
 </div>
 
+    <h1 class="titulopagina">NOSSAS PORÇÕES</h1>
+    <p>Porções saborosas e bem servidas, perfeitas para compartilhar. Opções ideais para acompanhar bons momentos.</p>
+
+   <div class="carrossel">
+    <button class="seta esquerda">&#10094;</button>
+
+    <div class="container">
+        <img src="imagens/porções1.jpeg" alt="">
+        <img src="imagens/porções2.jpeg" alt="">
+        <img src="imagens/porções3.jpeg" alt="">
+        <img src="imagens/porções4.jpeg" alt="">  
+    </div>
+
+    <button class="seta direita">&#10095;</button>
+</div>
+
+
 </main>
 
 
@@ -75,135 +108,71 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
- /* =========================
-   🔝 SLIDER DO TOPO
-==========================*/
+const carrosseis = document.querySelectorAll('.carrossel');
 
-const slider = document.querySelector(".slider");
-const sliderImages = document.querySelectorAll(".slider img");
-const dots = document.querySelectorAll(".dot");
+carrosseis.forEach(carrossel => {
 
-if (sliderImages.length > 0) {
+  const container = carrossel.querySelector('.container');
+  const imagens = container.querySelectorAll('img');
+  const btnEsquerda = carrossel.querySelector('.esquerda');
+  const btnDireita = carrossel.querySelector('.direita');
 
-  let currentSlide = 0;
-  let interval;
-  let isPaused = false;
+  let index = 0;
+  let startX = 0;
+  let prevTranslate = 0;
+  let currentTranslate = 0;
+  let isDragging = false;
 
-  function showSlide(index) {
-    sliderImages[currentSlide].classList.remove("active");
-    dots[currentSlide].classList.remove("active");
+  function atualizarCarrossel() {
+    const largura = carrossel.clientWidth;
 
-    currentSlide = index;
+    currentTranslate = -index * largura;
+    prevTranslate = currentTranslate;
 
-    sliderImages[currentSlide].classList.add("active");
-    dots[currentSlide].classList.add("active");
+    container.style.transition = "transform 0.4s ease-in-out";
+    container.style.transform = `translateX(${currentTranslate}px)`;
   }
 
-  function startAutoSlide() {
-    interval = setInterval(() => {
-      if (!isPaused) {
-        let next = (currentSlide + 1) % sliderImages.length;
-        showSlide(next);
-      }
-    }, 3000);
-  }
-
-  function stopAutoSlide() {
-    isPaused = true;
-  }
-
-  function resumeAutoSlide() {
-    isPaused = false;
-  }
-
-  // inicia automático
-  startAutoSlide();
-
-  // 👉 PAUSA AO SEGURAR (TOUCH)
-  slider.addEventListener("touchstart", stopAutoSlide);
-  slider.addEventListener("touchend", resumeAutoSlide);
-
-  // 👉 PAUSA AO SEGURAR (MOUSE)
-  slider.addEventListener("mousedown", stopAutoSlide);
-  slider.addEventListener("mouseup", resumeAutoSlide);
-  slider.addEventListener("mouseleave", resumeAutoSlide);
-
-  // bolinhas
-  window.goToSlide = function(index){
-    showSlide(index);
-  };
-}
-  /* =========================
-     📸 CARROSSEL COM SWIPE
-  ==========================*/
-
-  const carrossel = document.querySelector('.carrossel');
-
-  if (carrossel) {
-
-    const container = carrossel.querySelector('.container');
-    const imagens = container.querySelectorAll('img');
-    const btnEsquerda = carrossel.querySelector('.esquerda');
-    const btnDireita = carrossel.querySelector('.direita');
-
-    let index = 0;
-    let startX = 0;
-    let prevTranslate = 0;
-    let currentTranslate = 0;
-    let isDragging = false;
-
-    function atualizarCarrossel() {
-      const largura = carrossel.clientWidth;
-
-      currentTranslate = -index * largura;
-      prevTranslate = currentTranslate;
-
-      container.style.transition = "transform 0.4s ease-in-out";
-      container.style.transform = `translateX(${currentTranslate}px)`;
-    }
-
-    if (btnDireita) {
-      btnDireita.addEventListener('click', () => {
-        index = (index + 1) % imagens.length;
-        atualizarCarrossel();
-      });
-    }
-
-    if (btnEsquerda) {
-      btnEsquerda.addEventListener('click', () => {
-        index = (index - 1 + imagens.length) % imagens.length;
-        atualizarCarrossel();
-      });
-    }
-
-    container.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      isDragging = true;
-      container.style.transition = "none";
-    });
-
-    container.addEventListener('touchmove', (e) => {
-      if (!isDragging) return;
-      const diff = e.touches[0].clientX - startX;
-      container.style.transform = `translateX(${prevTranslate + diff}px)`;
-    });
-
-    container.addEventListener('touchend', (e) => {
-      isDragging = false;
-
-      const diff = e.changedTouches[0].clientX - startX;
-
-      if (diff > 50) index--;
-      else if (diff < -50) index++;
-
-      index = (index + imagens.length) % imagens.length;
-
+  if (btnDireita) {
+    btnDireita.addEventListener('click', () => {
+      index = (index + 1) % imagens.length;
       atualizarCarrossel();
     });
-
-    window.addEventListener("resize", atualizarCarrossel);
   }
+
+  if (btnEsquerda) {
+    btnEsquerda.addEventListener('click', () => {
+      index = (index - 1 + imagens.length) % imagens.length;
+      atualizarCarrossel();
+    });
+  }
+
+  container.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+    container.style.transition = "none";
+  });
+
+  container.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const diff = e.touches[0].clientX - startX;
+    container.style.transform = `translateX(${prevTranslate + diff}px)`;
+  });
+
+  container.addEventListener('touchend', (e) => {
+    isDragging = false;
+
+    const diff = e.changedTouches[0].clientX - startX;
+
+    if (diff > 50) index--;
+    else if (diff < -50) index++;
+
+    index = (index + imagens.length) % imagens.length;
+
+    atualizarCarrossel();
+  });
+
+  window.addEventListener("resize", atualizarCarrossel);
 
 });
 </script>

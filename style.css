@@ -97,10 +97,15 @@ header > img{
 .info{
     text-align: center;
     align-items: center;
-    font-family: Nexa, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif , Helvetica, sans-serif;
+    font-size: 20px;
     height: 250px;
     background-color:white;
     color: var(--cor4);
+}
+
+.info > p{
+    color: var(--cor2);
 }
 .cardapiohistoria{
     font-family: normal;
