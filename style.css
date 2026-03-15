@@ -107,6 +107,11 @@ header > img{
 .info > p{
     color: var(--cor2);
 }
+
+.info > h1{
+    padding: 10px;
+}
+
 .cardapiohistoria{
     font-family: normal;
     background-color: var(--cor2);
@@ -272,4 +277,10 @@ footer{
     align-items: center;
     text-align: center;
     padding-top: 10px;
+}
+
+@media (max-width:768px) {
+    .info{
+        height: 310px;
+    }
 }

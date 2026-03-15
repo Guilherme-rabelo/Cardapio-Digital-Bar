@@ -112,7 +112,7 @@ header > img{
 
 
 .info > h1{
-    padding: 0;
+    padding: 10px;
     color: var(--cor4);
     font-family: Helvetica, sans-serif;
 }
@@ -294,4 +294,8 @@ footer > h1{
   main{
     width: 400px;
   }
+    .info{
+        height: 310px;
+
+}
 }

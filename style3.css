@@ -110,7 +110,7 @@ header > img{
 }
 
 .info > h1{
-    padding: 0;
+    padding: 10;
     color: var(--cor4);
 }
 
@@ -294,4 +294,10 @@ footer > h1{
     color: var(--cor0);
     padding: 0;
     
+}
+
+@media (max-width:768px) {
+    .info{
+        height: 310px;
+    }
 }
